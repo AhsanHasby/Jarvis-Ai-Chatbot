@@ -11,13 +11,17 @@ def speak(text):
     engine.runAndWait()
     print(text)
 
-def process_command(c):
-    if "open google" in c.lower():
-        webbrowser.open("https://google.com")
-    elif "open facebook" in c.lower():
-        webbrowser.open("https://facebook.com")
-    elif "open youtube" in c.lower():
-        webbrowser.open("https://youtube.com")
+def process_command(command):
+    command = command.lower().strip()
+
+    if command.startswith("open "):
+        site = command.split("open ", 1)[1].strip()
+        
+        if "." not in site:
+            site += ".com"
+        url = "https://" + site
+
+        webbrowser.open(url)
 
 
 if __name__ == "__main__":
@@ -27,7 +31,7 @@ if __name__ == "__main__":
             with sr.Microphone() as source:
                 print("Say...")
                 recognizer.adjust_for_ambient_noise(source, duration = 1)
-                audio = recognizer.listen(source, timeout = 5, phrase_time_limit = 5)
+                audio = recognizer.listen(source, timeout = 5, phrase_time_limit = 6)
             
             word = recognizer.recognize_google(audio).lower()
             print(word)
