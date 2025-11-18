@@ -1,0 +1,16 @@
+Write these on your terminal:
+
+(1) python -m venv .venv
+
+# if gets an error message: 
+(a). Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+(b). Get-ExecutionPolicy -List
+
+(2) .\.venv\Scripts\activate.ps1
+
+(3) python --version
+
+(4) pip install speechrecognition pyaudio
+
+(5) pip install setuptools
+
